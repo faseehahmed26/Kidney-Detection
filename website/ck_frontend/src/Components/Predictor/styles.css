@@ -1,0 +1,41 @@
+.label {
+    /* background-image: url("../../Images/ckd4.jpg");
+    background-color: #cccccc; */
+    top: 0px !important; 
+    bottom: 0px !important;
+}
+
+.title{
+
+    padding-left: 55px;
+    padding-bottom: 15px !important;
+}
+
+.form-group{
+    /* padding-left: 25px; */
+    padding-bottom: 5px !important;
+}
+/* .input:valid {
+    background-color:  #ffffff!important;
+  } */
+
+
+#tsparticles{
+   
+    /* margin-top: 55px !important; */
+
+    padding-top: 55px !important;
+    width: 100% !important;
+     height: 100% !important; 
+     position: fixed !important; 
+     /* z-index: 1 !important;  */
+     /* max-height: fit-content; */
+     top: 0px !important; 
+     left: 0px !important; 
+     /* background-color: rgba(13, 71, 161, 0.3);  */
+     /* background-position: 100% center;  */
+     background-repeat: no-repeat; 
+     background-size: cover; 
+     pointer-events: none;
+    }
+
