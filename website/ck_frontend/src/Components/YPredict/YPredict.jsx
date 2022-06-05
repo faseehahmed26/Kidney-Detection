@@ -14,8 +14,8 @@ class YPredict extends Component {
             <div className="jumbotron text-center ">
               <h1 className="font-weight-bold">You have a Kidney Disease !</h1>
               <h4 className="font-weight-bold">
-                Please Consult the Doctor Immideately. It was too risky without
-                consultation. Make sure of health in your diet.
+                Please Consult the Doctor Immideately. It is too risky without
+                consultation. Make sure you have a healthy diet.
               </h4>
               <div className="text-center">
                 <hr className="my-4" />

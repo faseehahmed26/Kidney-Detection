@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "../minorComponents/Loading";
 import ErrorMessage from "../minorComponents/ErrorMessage";
@@ -14,9 +14,10 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-  const [picMessage, setPicMessage] = useState(null);
+  // const [picMessage, setPicMessage] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const nav = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -97,7 +98,15 @@ const Register = () => {
             placeholder="Confirm Password"
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <input type="submit" className="fadeIn fourth" value="Submit" />
+          <input
+            type="submit"
+            className="fadeIn fourth"
+            value="Submit"
+            onClick={() => {
+              localStorage.removeItem("userInfo");
+              nav("/predictor");
+            }}
+          />
           <div className="col -md-6">
             Have an Account ?
             <Link to="/" className="col-md-12 underlineHover">
