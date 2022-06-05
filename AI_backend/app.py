@@ -51,7 +51,7 @@ def prediction():
         print(data)
         prediction = predict(data)
 
-        types = {0: "/NPredict",
+        types = {0: "/NPr3edict",
                     1: "/YPredict"}
         print(types[prediction])
         print(prediction)
