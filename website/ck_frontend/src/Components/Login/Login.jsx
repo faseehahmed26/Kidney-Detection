@@ -50,7 +50,8 @@ const Login = ({ history }) => {
       console.log(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.push("/predictor");
+      // history.push("/predictor");
+      nav("/predictor");
     } catch (error) {
       setError(error.response.data.message);
       setLoading(false);
@@ -95,7 +96,6 @@ const Login = ({ history }) => {
             value="Log In"
             onClick={() => {
               localStorage.removeItem("userInfo");
-              nav("/predictor");
             }}
           />
         </form>

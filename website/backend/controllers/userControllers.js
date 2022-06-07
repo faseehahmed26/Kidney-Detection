@@ -1,5 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Patient = require("../models/patModel");
+
 // const { use } = require("../routes/userRoutes");
 const generateToken = require("../utils/generateToken.js");
 
@@ -54,4 +56,68 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, authUser };
+const patientDetails = asyncHandler(async (req, res) => {
+  const {
+    White_Blood_Cell,
+    Blood_Urea,
+    Blood_Glucose_Random,
+    Serum_creatine,
+    Packed_cell_volume,
+    Albumin,
+    Haemoglobin,
+    Age,
+    Sugar,
+    Hypertension,
+    Predicted,
+  } = req.body;
+
+  console.log(req.body);
+
+  const wbcexits = await Patient.findOne({ White_Blood_Cell });
+
+  if (wbcexits) {
+    res.status(400);
+    throw new Error("Patient Details Already Exists");
+  }
+
+  const patient = await Patient.create({
+    White_Blood_Cell,
+    Blood_Urea,
+    Blood_Glucose_Random,
+    Serum_creatine,
+    Packed_cell_volume,
+    Albumin,
+    Haemoglobin,
+    Age,
+    Sugar,
+    Hypertension,
+    Predicted,
+  });
+
+  if (patient) {
+    res.status(201).json({
+      _id: patient.id,
+      White_Blood_Cell: patient.White_Blood_Cell,
+      Blood_Urea: patient.Blood_Urea,
+      Blood_Glucose_Random: patient.Blood_Glucose_Random,
+      Serum_creatine: patient.Serum_creatine,
+      Packed_cell_volume: patient.Packed_cell_volume,
+      Albumin: patient.Albumin,
+      Haemoglobin: patient.Haemoglobin,
+      Age: patient.Age,
+      Sugar: patient.Sugar,
+      Hypertension: patient.Hypertension,
+      Predicted: patient.Predicted,
+      token: generateToken(patient._id),
+    });
+  } else {
+    res.status(401);
+    throw new Error("Error Occured");
+  }
+  //   res.json({
+  //     name,
+  //     email,
+  //   });
+});
+
+module.exports = { registerUser, authUser, patientDetails };

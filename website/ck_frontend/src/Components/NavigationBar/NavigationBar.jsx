@@ -69,10 +69,10 @@ const NavigationBar = () => {
               </a>
             </li>
           </ul> */}
-          <ul class="navbar-nav text-right">
-            <li class="nav-item active">
+          <ul className="navbar-nav text-right">
+            <li className="nav-item active">
               <a
-                class="nav-link"
+                className="nav-link"
                 onClick={() => {
                   localStorage.removeItem("userInfo");
                   nav("/");

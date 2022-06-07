@@ -3,12 +3,13 @@ import React, { Component } from "react";
 // import { Navigate } from "react-router";
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.css";
-// import Particles from "react-tsparticles";
-// import Particles from "react-particles-js";
-
 import Navigation from "../Navigation/Navigation";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
+
+import axios from "axios";
+import Loading from "../minorComponents/Loading";
+import ErrorMessage from "../minorComponents/ErrorMessage";
 // import tsParticles from "tsparticles";
 
 // import tsParticles from "./Particles";
@@ -54,7 +55,8 @@ class Predictor extends Component {
     });
   };
 
-  handlePredictClick = async (event) => {
+  handlePredictClick = async (e) => {
+    e.preventDefault();
     const formData = this.state.formData;
     const values = Object.keys(formData).map(function(key) {
       return formData[key];
@@ -80,10 +82,50 @@ class Predictor extends Component {
           predicted: response.predicted,
           isLoading: false,
         });
-        // const res = response.result;
+        const res = response.result;
         const pred = response.predicted;
 
         console.log(res, pred);
+        // console.log(formData);
+        // values.push(pred);
+
+        const arr = values.concat(pred);
+        const pat = [
+          "White_Blood_Cell",
+          "Blood_Urea",
+          "Blood_Glucose_Random",
+          "Serum_creatine",
+          "Packed_cell_volume",
+          "Albumin",
+          "Haemoglobin",
+          "Age",
+          "Sugar",
+          "Hypertension",
+          "Predicted",
+        ];
+        console.log(arr.at(11));
+        const patdata = {};
+        pat.forEach((pa, i) => (patdata[pa] = arr[i]));
+
+        try {
+          const config = {
+            headers: {
+              "Content-type": "application/json",
+              // Accept: "application/json",
+            },
+          };
+
+          const { data } = axios.post(
+            "/api/users/patientDetails",
+            patdata,
+            config
+          );
+
+          console.log(patdata);
+          console.log(data);
+        } catch (error) {
+          console.log(error.response.data);
+        }
       });
   };
 
@@ -208,7 +250,7 @@ class Predictor extends Component {
           <div className="content row ">
             <div className="col-md-4"></div>
 
-            <form className="form  col-md-6">
+            <form className="form  col-md-6 ">
               {/* <div className="col-md-1"></div> */}
               {/* <div className="col-md-5"> */}
               <h3 className="title">Chronic Kidney Disease Predictor</h3>
