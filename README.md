@@ -44,6 +44,6 @@ accurate percentage disease of the patient. The dataset and values go to the pre
 the system where the data is pre-processed for the future references and then the feature selection
 is done by the user where he will enter the various values.
 
-![qwe dfd](https://github.com/faseehahmed26/Kidney-Detection/blob/master/Screenshots/Predict.png?raw=true)
+![qwe dfd](https://github.com/faseehahmed26/Kidney-Detection/blob/master/Screenshots/ckd_speed.gif?raw=true)
 
 If you would like to experiment with the [dataset](https://www.kaggle.com/datasets/akshayksingh/kidney-disease-dataset)  and the code at [Github](https://github.com/faseehahmed26/Kidney-Detection).
